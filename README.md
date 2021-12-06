@@ -21,5 +21,5 @@ It uses yt-dlp to download songs from Youtube.<br>
  * It is not a complete project, it is still under development
  * It may be buggy at some point
  * You can only use keyboard shortcuts to copy and paste the link inside the entry box.
- * It may stop responding, though it will complete the download without any problem. Wait till then (This is because of running the whole code on the main thread, I am working on it)
+ * It may stop responding, though it will complete the download without any problem. Wait till then (This is because of running the whole program on the main thread, I am working on it)
  
