@@ -15,4 +15,4 @@ It uses yt-dlp to download songs from Youtube.
   * [Pillow ](https://pypi.org/project/Pillow/)
   * [requests](https://pypi.org/project/requests/)  
   * Tkinter
-  * ffmpeg(Binay)
+  * ffmpeg(Place Binary file inside where the script is present)
