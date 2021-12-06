@@ -1,3 +1,5 @@
+![Annotation 2021-12-06 133807](https://user-images.githubusercontent.com/74132905/144810108-ea6af3f3-9d7b-48c2-8ce5-945d77cf2def.png)
+
 # Spotify-Downloader-GUI
 This Program helps you download songs from the Spotify track's link you give in. <br>
 It uses yt-dlp to download songs from Youtube.<br>
