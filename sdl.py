@@ -70,7 +70,7 @@ def get_link():  # Gets the spotify link from the entry widget
     f = open(r"path\path.txt", "r")
     path = f.read()
 
-    if path == '':
+    if path == '': #checks if path exists 
         f.close()
         get_path()
 
@@ -82,7 +82,7 @@ def get_link():  # Gets the spotify link from the entry widget
 
     link = entry.get()
 
-    if link == '':
+    if link == '': # checks if links present
         messagebox.showinfo("", "Enter a link!")
     else:
         print(link)
