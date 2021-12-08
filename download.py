@@ -41,7 +41,7 @@ def youtube(title, path):  # get's the YT video link
     if lst[count - 5] == "/results":
         raise Exception("No Video Found for this Topic!")
     download_track(f"https://www.youtube.com{lst[count - 5]}", path)
-    # threading.Thread(target=download_track, args=[
+    
 
 
 def spotify(link, path):  # get song's name by scrapping spotify
