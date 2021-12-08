@@ -23,7 +23,7 @@ def download_track(link, dir): #downloads the track
                 }
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([link])
-    messagebox.showinfo("SDL", "Download complete!")
+    messagebox.showinfo("", "Download complete!")
 
 
 def youtube(title, path): #get's the YT video link
