@@ -7,6 +7,12 @@ import set_path
 
 class GUI:
     def __init__(self, root=None):
+
+        self.root = tkinter.Tk()
+        self.root.title("Spotify Downloader")
+        self.root.iconbitmap(default=r'img\spotify.ico')
+        self.root.geometry("883x529")
+
         # BackGround
         self.bg = ImageTk.PhotoImage(file=r"img\bg.jpg")
         self.label = tkinter.Label(root, image=self.bg)
@@ -25,7 +31,7 @@ class GUI:
         self.dl_btn_img_label = tkinter.Label(image=self.dl_btn_img)
 
         self.dl_btn = tkinter.Button(root, image=self.dl_btn_img, borderwidth=0, bg='black',
-                                     activebackground='black', command=lambda: threading.Thread(target=download.get_link, args=[self]).start())
+                                     activebackground='black', command=lambda: download.threads(self))
         self.dl_btn.place(x=347, y=365)
         #
 
@@ -36,12 +42,10 @@ class GUI:
                                       bg='black', activebackground='black', command=set_path.get_path)
         self.pth_btn.place(x=670, y=265)
 
+        self.root.resizable(False, False)
+        self.root.mainloop()
+
 
 if __name__ == "__main__":
-    root = tkinter.Tk()
-    root.title("Spotify Downloader")
-    root.iconbitmap(default=r'img\spotify.ico')
-    root.geometry("883x529")
-    GUI(root)
-    root.resizable(False, False)
-    root.mainloop()
+
+    GUI()
