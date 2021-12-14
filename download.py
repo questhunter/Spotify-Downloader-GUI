@@ -86,62 +86,63 @@ def get_link(gui):  # Gets the spotify link
         else:
             f.close()
 
-        link = gui.entry.get()  # gets spotify link from the entry widget
+        link = gui.entry.get()  # gets link from the entry widget
 
-        if link == '':  # checks if links present
-            messagebox.showinfo("Alert", "Enter a link!")
-        else:
-            spotify(link, path)
+        spotify(link, path)
+
     except:
         messagebox.showerror("", "Error, Download Incomplete!")
 
 
 def threads(gui):
 
-    gui.dl_btn['state'] = 'disabled'    # disable download button
-    t = threading.Thread(target=get_link, args=[gui])
-    t.start()
+    if gui.entry.get() != '':  # checks link
 
-    def check_schedule(t, gui):
-        gui.root.after(1000, check_if_done, t, gui)
+        gui.dl_btn['state'] = 'disabled'    # disable download button
+        t = threading.Thread(target=get_link, args=[gui])
+        t.start()
 
-    def check_if_done(t, gui):
-        # If the thread has finished, re-enable the button and show a message.
-        if not t.is_alive():
+        def check_schedule(t, gui):
+            gui.root.after(1000, check_if_done, t, gui)
 
-            dl_popup.destroy()  # close the popup window
-            dl_popup.update()
+        def check_if_done(t, gui):
 
-            # enable download button after download complete
-            gui.dl_btn['state'] = 'normal'
-            messagebox.showinfo("", "Download complete!")
-        else:
-            # Otherwise check again after one second.
-            check_schedule(t, gui)
+            if not t.is_alive():  # Checks thread, alive
 
-    # download progress window(popup)
-    dl_popup = tkinter.Toplevel(gui.root)
+                dl_popup.destroy()  # close the popup window
+                dl_popup.update()
 
-    # align popup to the center of the  root window
+                gui.dl_btn['state'] = 'normal'  # enable download button
+                messagebox.showinfo("", "Download complete!")
 
-    root_x = gui.root.winfo_rootx()  # get main window position
-    root_y = gui.root.winfo_rooty()
+            else:
+                check_schedule(t, gui)
 
-    dl_popup_x = root_x + 330  # add offset to this position
-    dl_popup_y = root_y + 220
-    dl_popup.geometry(f'+{dl_popup_x}+{dl_popup_y}')
+        # download progress window(popup)
+        dl_popup = tkinter.Toplevel(gui.root)
 
-    dl_popup.attributes('-topmost', 'true')
-    # dl_popup.overrideredirect(True) #remove title bar
+        # align popup to the center of the  root window
 
-    label = Label(dl_popup, text="Downloading...")
-    label.pack()
+        root_x = gui.root.winfo_rootx()  # get main window position
+        root_y = gui.root.winfo_rooty()
 
-    pb = ttk.Progressbar(dl_popup, orient="horizontal",
-                         length=200, mode="indeterminate")
-    pb.pack()
-    pb.start(10)
+        dl_popup_x = root_x + 330  # add offset to this position
+        dl_popup_y = root_y + 220
+        dl_popup.geometry(f'+{dl_popup_x}+{dl_popup_y}')
 
-    check_if_done(t, gui)
+        dl_popup.attributes('-topmost', 'true')
 
-    dl_popup.mainloop()
+        label = Label(dl_popup, text="Downloading...")
+        label.pack()
+
+        pb = ttk.Progressbar(dl_popup, orient="horizontal",
+                             length=200, mode="indeterminate")
+        pb.pack()
+        pb.start(10)
+
+        check_if_done(t, gui)
+
+        dl_popup.mainloop()
+
+    else:
+        messagebox.showwarning("Alert", "Enter a link!")
