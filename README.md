@@ -22,5 +22,5 @@ It uses yt-dlp to download songs from Youtube.<br>
 # Note:
  * It is not a complete project, it is still under development
  * It may be buggy at some point
-
+ * There might be not enough features available
  
